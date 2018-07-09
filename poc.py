@@ -3,6 +3,8 @@ import os
 import numpy as np
 from subprocess import check_output
 from PIL import Image
+from fpdf import FPDF
+
 class MyForm(wx.Frame):
 	def __init__(self):
 		wx.Frame.__init__(self, None, title="Filtros")
@@ -22,6 +24,8 @@ class MyForm(wx.Frame):
 		# getTexto
 		getTextMenuItem = filtrosMenu.Append(wx.NewId(), "Obtener texto","Open Image")
 		self.Bind(wx.EVT_MENU, self.onGetText,getTextMenuItem)
+		genPDFMenuItem = filtrosMenu.Append(wx.NewId(), "Generar PDF","Open Image")
+		self.Bind(wx.EVT_MENU, self.onGenPDF,genPDFMenuItem)
 
 		menuBar.Append(fileMenu, "&Archivos")
 		menuBar.Append(filtrosMenu, "&Herramientas")
@@ -53,6 +57,10 @@ class MyForm(wx.Frame):
 			pepe.Destroy()
 		else:
 			pepe.Destroy()
+
+	def onGenPDF(self,event):
+		print 'aqui debo generar pdf'
+		pdf = FPDF('P','pt',(400,568))
 
 class TextEntryDialog(wx.Dialog):
 	def __init__(self, parent, title, caption):
