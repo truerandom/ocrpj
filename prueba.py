@@ -17,7 +17,6 @@ def genpdf(fname,fdir='.'):
 		pdf.text(10,10,'... pwned by truerandom ...')
 		pdf.image(f,0,0)
 	pdf.output(fname, "F")
-	print 'done'
 try: fname = sys.argv[1]
 except: fname = 'output.pdf'
 genpdf(fname)
