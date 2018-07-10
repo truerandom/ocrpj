@@ -1,0 +1,11 @@
+# instalar tesseract
+apt install tesseract-ocr
+# instalar lang
+apt install tesseract-ocr-spa
+# instalar fpdf
+pip install fpdf
+#? xmp 
+#pip install python-xmp-toolkit
+#pip install reportlab
+#pyPdf
+#pdftk

@@ -1,6 +1,5 @@
 import wx 
 import os
-import numpy as np
 from subprocess import check_output
 from PIL import Image
 from fpdf import FPDF
