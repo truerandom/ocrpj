@@ -4,7 +4,6 @@ import numpy as np
 from subprocess import check_output
 from PIL import Image
 from fpdf import FPDF
-
 class MyForm(wx.Frame):
 	def __init__(self):
 		wx.Frame.__init__(self, None, title="Filtros")
@@ -59,8 +58,18 @@ class MyForm(wx.Frame):
 			pepe.Destroy()
 
 	def onGenPDF(self,event):
-		print 'aqui debo generar pdf'
-		pdf = FPDF('P','pt',(400,568))
+		im = Image.open(self.filename)
+		h,w = im.size
+		pdf = FPDF('P','pt',(h,w))
+		pdf.add_page()
+		pdf.set_font('Courier','B')
+		pdf.set_font_size(10)
+		pdf.set_text_color(0,255,0)
+		effective_page_width = pdf.w-pdf.l_margin
+		pdf.multi_cell(effective_page_width,6,self.msg)
+		pdf.image(self.filename,0,0)
+		pdf.output("report.pdf", "F")
+		print 'done check files'
 
 class TextEntryDialog(wx.Dialog):
 	def __init__(self, parent, title, caption):
@@ -82,9 +91,7 @@ class TextEntryDialog(wx.Dialog):
 
 	def getText(self):
 		return self.input.GetValue()
-
 if __name__ == "__main__":
 	app = wx.App(False)
 	frame = MyForm().Show()
 	app.MainLoop()
-
