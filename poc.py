@@ -66,7 +66,7 @@ class MyForm(wx.Frame):
 		pdf.set_font_size(10)
 		pdf.set_text_color(0,255,0)
 		effective_page_width = pdf.w-pdf.l_margin
-		pdf.multi_cell(effective_page_width,6,self.msg)
+		pdf.multi_cell(effective_page_width,6,self.msg.encode('latin-1','ignore'))
 		pdf.image(self.filename,0,0)
 		pdf.output("report.pdf", "F")
 		print 'done check files'
